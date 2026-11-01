@@ -26,7 +26,7 @@ own data, your utility's portal or a supported integration is the route.
 Python 3.11 or newer. With [uv](https://docs.astral.sh/uv/):
 
 ```bash
-git clone <this repository> && cd flexnet-rx
+git clone https://github.com/kylekoza/flexnet-rx.git && cd flexnet-rx
 uv sync --extra plot
 ```
 
