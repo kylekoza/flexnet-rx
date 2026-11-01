@@ -1,0 +1,61 @@
+[project]
+name = "flexnet-rx"
+version = "0.1.0"
+description = "Receive-only tools for demodulating and analysing Sensus FlexNet electric-meter transmissions with an RTL-SDR"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Kyle Koza" }]
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26", "scipy>=1.11"]
+keywords = ["sdr", "rtl-sdr", "flexnet", "sensus", "ami", "smart-meter", "16-qam"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Communications :: Ham Radio",
+    "Topic :: Scientific/Engineering",
+    "Intended Audience :: Science/Research",
+]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.8"]
+
+[project.scripts]
+flexnet-capture = "flexnet_rx.capture:main"
+flexnet-demod = "flexnet_rx.demod:main"
+flexnet-frames = "flexnet_rx.frame:main"
+flexnet-randomness = "flexnet_rx.randomness:main"
+flexnet-fec-search = "flexnet_rx.fec:main"
+flexnet-idsearch = "flexnet_rx.idsearch:main"
+flexnet-synth = "flexnet_rx.synth:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11"]
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "D", "N", "SIM", "RUF"]
+ignore = ["N803", "N806"]  # signal-processing names (I, Q, N) read better upper-case
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D"]
+
+[tool.mypy]
+strict = true
+files = ["src"]
+
+[[tool.mypy.overrides]]
+module = ["scipy.*", "matplotlib.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

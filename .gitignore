@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+dist/
+build/
+*.egg-info/
+
+# Captures and their products: these hold your meter's address and your neighbours'
+# traffic. Keep them out of version control.
+*.cf32
+*.sym
+bursts/
+syms/
+bursts.csv
+*.png
+demo/
